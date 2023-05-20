@@ -1,5 +1,4 @@
 const notes = require("express").Router();
-// const { json } = require('express');
 const {
   readFromFile,
   readAndAppend,
@@ -13,13 +12,13 @@ notes.get("/", (req, res) => {
 });
 
 //DELETE route for apecific notes
-notes.delete("/:note_id", (req, res) => {
-  const noteID = req.params.note_id;
+notes.delete("/:id", (req, res) => {
+  const noteID = req.params.id;
   readFromFile("./db/db.json")
     .then((data) => JSON.parse(data))
     .then((json) => {
       // Make a new array of all notes except the one with the ID provided in the URL
-      const result = json.filter((note) => note.note_id != noteID);
+      const result = json.filter((note) => note.id != noteID);
       // Save that array to the filesystem
       writeToFile("./db/db.json", result);
       // Respond to the DELETE request
@@ -27,7 +26,7 @@ notes.delete("/:note_id", (req, res) => {
     });
 });
 
-// POST Route for a new UX/UI tip
+// POST Route for a new notes
 notes.post("/", (req, res) => {
   console.log(req.body);
 
@@ -37,7 +36,7 @@ notes.post("/", (req, res) => {
     const newNote = {
       title,
       text,
-      tip_id: uuid(),
+      id: uuid(),
     };
 
     readAndAppend(newNote, "./db/db.json");
