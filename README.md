@@ -31,7 +31,7 @@ Simply go to the live page: [https://hidden-retreat-57417.herokuapp.com/](https:
 2. Navigate to the project directory: `cd note-taker-app`
 3. Install the dependencies: `npm install`
 4. Start the application: `node server.js`
-5. Open your web browser and visit `http://localhost:3000` to access the Note Taker app.
+5. Open your web browser and visit `http://localhost:3001` to access the Note Taker app.
 
 ## Screenshots
 
